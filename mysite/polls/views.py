@@ -17,10 +17,8 @@ def index(request):
     #output = ', '.join([q.question_text for q in latest_question_list]) => put it on site directly with python code
 
 def detail(request, question_id):
-    try:
-        question = Question.objects.get(pk=question_id)
-    except:
-        raise Http404("Question does not exist")
+    question = get_object_or_404(Question,pk=question_id)
+
 
     return render(request, 'polls/detail.html',{'question':question})
 
